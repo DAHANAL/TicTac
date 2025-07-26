@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Corazón para Ella</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: #ffe4ec; /* fondo rosa claro */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+
+    .circle {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background-color: #ff4d6d; /* rojo suave */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      position: relative;
+    }
+
+    .circle:hover {
+      transform: scale(0.95);
+    }
+
+    .circle:active {
+      transform: scale(0.9);
+    }
+
+    .heart {
+      font-size: 80px;
+    }
+
+    .message {
+      position: absolute;
+      padding: 10px 20px;
+      background-color: #ff9dbb; /* rosa más oscuro */
+      color: white;
+      border-radius: 50px;
+      opacity: 1;
+      transition: opacity 3s ease;
+      white-space: nowrap;
+      pointer-events: none;
+      animation: fadeOut 3s forwards;
+      z-index: 10;
+    }
+
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="circle" onclick="showMessage()">
+    <div class="heart">💗</div>
+  </div>
+
+  <script>
+    const messages = [
+      "Eres mi alegría diaria", "Tienes una luz propia", "Tu sonrisa me calma", "Tú haces que todo valga la pena",
+      "Contigo todo es mejor", "Eres mi lugar seguro", "Tienes un corazón hermoso", "Te admiro profundamente",
+      "Eres tan especial", "Me encantas tal como eres", "Tienes una dulzura única", "Tu mirada dice mucho",
+      "Cada día me gustas más", "No hay nadie como tú", "Tu energía me envuelve", "Eres ternura pura",
+      "Vales cada segundo", "Me inspiras a ser mejor", "Tu risa es medicina", "Me haces sentir en casa",
+      "Eres tan real", "Tan tú y tan mágica", "Tienes algo que no sé explicar", "Me encanta escucharte hablar",
+      "Siempre es mejor si estás tú", "Tienes un alma bonita", "Me encanta tu locura", "Tus imperfecciones te hacen perfecta",
+      "Tu forma de amar es única","Me haces sentir afortunado", "Eres mi persona favorita", "Te pienso incluso cuando no debería", "Eres lo más lindo que he encontrado"
+    ];
+
+    let index = 0;
+
+    function showMessage() {
+      const msg = document.createElement("div");
+      msg.className = "message";
+      msg.textContent = messages[index];
+
+      const x = Math.random() * window.innerWidth * 0.6 - window.innerWidth * 0.3;
+      const y = Math.random() * window.innerHeight * 0.6 - window.innerHeight * 0.3;
+
+      msg.style.left = `50%`;
+      msg.style.top = `50%`;
+      msg.style.transform = `translate(${x}px, ${y}px)`;
+
+      document.body.appendChild(msg);
+
+      setTimeout(() => {
+        msg.remove();
+      }, 3000);
+
+      index = (index + 1) % messages.length;
+    }
+  </script>
+
+</body>
+</html>
